@@ -1,0 +1,100 @@
+customer
+  name,email,phones,addresses,savedProducts
+Employee
+  name,email,phones,addresses,salaries,transaction,entry_type,amount,entry_id,is_achieved,paid_by, updated_by
+
+Voucher
+  products,number,total,Closeddatetime,customer,customerRating,customerReview,paymentMethods,status
+
+
+
+product
+  name,provider,type,qty,stockKeepingUnit,description,sizes,width,height,length,weight,colors,prices,categories,productImage,variations,
+
+variations
+  variationTypes,values
+
+provider
+  name,email,phones,addresses,rating
+
+delivery
+  name,email,phones,addresses,rating,deliveryMethod,
+
+shop
+  name,email,phones,addresses,type
+
+
+categories 
+  name,subCategory
+
+______________________________________
+1st normalization
+
+shop
+  name,owner:User,type:ShopType,images
+
+ShopType
+  name
+
+User
+  name,social_security_number,driver_license,email,type,shop,userType,phones:List<PhoneNumber>,addresses:List<Addresses>
+
+
+PhoneNumber
+  number
+
+Addresses
+  address,latitude,longitude
+
+UserTypes
+  type,
+
+Employee
+  user,
+
+Customer
+  user,savedProducts
+
+Salary
+  salary,datetime,employee
+
+customer
+  user,savedProducts
+
+productTemplate
+  name,type,stockKeepingUnit,description,prices,categories,productImages
+
+ProductCategory
+  name,categoryType
+
+ProductCategoryType
+  name
+
+productProviders
+  providers,products,ratings, 
+
+delivery
+  name,email,phones,addresses,rating,deliveryMethod
+
+ProductSize
+  width,height,length,weight,size_name,diameter
+
+color
+  name,code
+
+inventory
+  productTemplate, qty , productSizes ,colors , prices , currentPrice , categories, productImages
+
+Order
+  inventory , qty 
+
+
+Voucher
+  orders, discount , tax , bonus , table , customer
+
+Table 
+  name
+  
+
+
+

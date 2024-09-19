@@ -1,0 +1,41 @@
+{
+    "unique_constraints": [],
+    "variables": [
+        {
+            "name": "id",
+            "type": "long",
+            "default_value": 0,
+            "optional": True,
+            "constraints": "not null primary key",
+            "dbAutoValue": True,
+            "map": "",
+        },
+        {
+            "name": "address",
+            "type": "String",
+            "default_value": "",
+            "optional": False,
+            "constraints": "not null",
+            "dbAutoValue": False,
+            "map": "",
+        },
+        {
+            "name": "latitude",
+            "type": "double",
+            "default_value": 0.0,
+            "optional": True,
+            "constraints": "",
+            "dbAutoValue": False,
+            "map": "",
+        },
+        {
+            "name": "longitude",
+            "type": "double",
+            "default_value": 0.0,
+            "optional": True,
+            "constraints": "",
+            "dbAutoValue": False,
+            "map": "",
+        },
+    ],
+}

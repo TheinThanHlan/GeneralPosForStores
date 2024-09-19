@@ -1,0 +1,41 @@
+{
+    "unique_constraints": [],
+    "variables": [
+        {
+            "name": "id",
+            "type": "long",
+            "default_value": 0,
+            "optional": True,
+            "constraints": "not null primary key",
+            "dbAutoValue": True,
+            "map": "",
+        },
+        {
+            "name": "provider",
+            "type": "User",
+            "default_value": "",
+            "optional": False,
+            "constraints": "not null",
+            "dbAutoValue": False,
+            "map": "OneToOne",
+        },
+        {
+            "name": "products",
+            "type": "List<ProductTemplate>",
+            "default_value": "",
+            "optional": False,
+            "constraints": "not null",
+            "dbAutoValue": False,
+            "map": "ManyToMany",
+        },
+        {
+            "name": "ratings",
+            "type": "double",
+            "default_value": 0.0,
+            "optional": True,
+            "constraints": "",
+            "dbAutoValue": False,
+            "map": "",
+        },
+    ],
+}
