@@ -1,22 +1,40 @@
-//import 'package:general_pos/views/Auth/AuthInject.dart';
-
-import 'package:general_pos/views/Auth/AuthInject.dart';
-import 'package:go_router/go_router.dart';
+import 'package:general_pos/views/Components/OCDialog/OCDialogInject.dart';
+import 'package:general_pos/views/Components/OCDialog/OCDialogModel.dart';
+import 'package:general_pos/views/Manage/ManageInject.dart';
+import 'package:general_pos/views/ManageCategory/ManageCategoryInject.dart';
+import 'package:general_pos/views/ManageProductTemplate/ManageProductTemplateInject.dart';
+import 'package:general_pos/views/ManagePropertyNames/ManagePropertyNamesInject.dart';
+import 'package:general_pos/views/SideBar/SideBarInject.dart';
+import "package:general_pos/views/ManageInventory/ManageInventoryInject.dart";
+import "package:general_pos/views/Sales/SalesInject.dart";
+import "package:general_pos/views/ManageTable/ManageTableInject.dart";
+import "package:general_pos/views/VoucherHistory/VoucherHistoryInject.dart";
+import './GlobalConfig.dart';
 import './MVCDatabaseProvider.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sqflite/sqflite.dart';
+import '../data/InjectData.dart';
 
 final GetIt getIt = GetIt.I;
-void init_injection_container() {
-  getIt.registerSingletonAsync<Database>(
-      () async => await MVCDatabaseProvider().getDatabase());
-  //getIt.registerSingleton<GoRouter>(goRouter);
-  getIt.registerSingleton(GoRouter(
-    initialLocation: "/Auth",
-    routes: [],
-  ));
+Future<void> init_injection_container() async {
+  getIt.registerSingleton(await MVCDatabaseProvider().getDatabase());
+  await getIt.registerSingleton(GlobalConfig());
+  injectData(getIt);
+  await initComponents();
+  await initPages();
+}
 
-  //add injections
-  //injectAuth(getIt, getIt<GoRouter>());
-  injectAuth(getIt);
+Future<void> initPages() async {
+  injectVoucherHistory(getIt);
+  injectSales(getIt);
+  injectManageInventory(getIt);
+  //injectManageProductTemplate(getIt);
+  injectManageCategory(getIt);
+  injectManagePropertyNames(getIt);
+  injectManageTable(getIt);
+  injectManage(getIt);
+  injectSideBar(getIt);
+}
+
+Future<void> initComponents() async {
+  injectOCDialog(getIt);
 }

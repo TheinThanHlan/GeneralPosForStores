@@ -1,0 +1,27 @@
+import '../mvc_template/all.dart';
+import './all.dart';
+import 'package:get_it/get_it.dart';
+void injectData(GetIt getIt){getIt.registerSingleton(OrderDao());
+getIt.registerSingleton(ProductPropertyNameDao());
+getIt.registerSingleton(EmployeeDao());
+getIt.registerSingleton(ProductTemplateDao());
+getIt.registerSingleton(VoucherStatusDao());
+getIt.registerSingleton(ColorDao());
+getIt.registerSingleton(ShopDao());
+getIt.registerSingleton(ProductProviderDao());
+getIt.registerSingleton(ProductCategoryDao());
+getIt.registerSingleton(PhoneNumberDao());
+getIt.registerSingleton(SalaryDao());
+getIt.registerSingleton(AddressDao());
+getIt.registerSingleton(TemplateDao());
+getIt.registerSingleton(VoucherDao());
+getIt.registerSingleton(InventoryDao());
+getIt.registerSingleton(DeliveryMethodDao());
+getIt.registerSingleton(ProductPropertyDao());
+getIt.registerSingleton(ProductPriceDao());
+getIt.registerSingleton(UserDao());
+getIt.registerSingleton(DeliveryDao());
+getIt.registerSingleton(OrderStatusDao());
+getIt.registerSingleton(ShopTypeDao());
+getIt.registerSingleton(ServingTableDao());
+getIt.registerSingleton(CustomerDao());}

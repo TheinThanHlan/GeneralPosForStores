@@ -1,15 +1,16 @@
 import '../../all.dart';
 class Order implements IMVCModel{ 
 	int? id=0;
-	late Customer customer;
+	late Voucher voucher;
 	late OrderStatus orderStatus;
-	double totalPrice=0.0;
-	late Address deliveryAddress;
-	late DateTime orderDate;
-	late List<Inventory> items;
-	Order({ this.id,required this.customer,required this.orderStatus,required this.totalPrice,required this.deliveryAddress,required this.orderDate,required this.items});
-	Map<String, dynamic> toJson() => {"id":id,"customer":customer,"orderStatus":orderStatus,"totalPrice":totalPrice,"deliveryAddress":deliveryAddress,"orderDate":orderDate,"items":items};
-	Map<String, dynamic> toJsonWithoutDbAuto() => {"totalPrice":totalPrice,"orderDate":orderDate,"items":items};
-	Order.fromJson(Map<String,dynamic> data): id=data["id"],customer=data["customer"],orderStatus=data["orderStatus"],totalPrice=data["totalPrice"],deliveryAddress=data["deliveryAddress"],orderDate=DateTime.parse(data["orderDate"]),items=data["items"];
+	Address? deliveryAddress;
+	DateTime? orderDateTime;
+	late Inventory item;
+	late int qty;
+	Order({ this.id,required this.voucher,required this.orderStatus, this.deliveryAddress, this.orderDateTime,required this.item,required this.qty});
+	Map<String, dynamic> toJson() => {"id":id,"voucher":voucher,"orderStatus":orderStatus,"deliveryAddress":deliveryAddress,"orderDateTime":orderDateTime,"item":item,"qty":qty};
+	Map<String, dynamic> toJsonWithoutDbAuto() => {"qty":qty};
+	Order.fromJson(Map<String,dynamic> data): id=data["id"],voucher=data["voucher"],orderStatus=data["orderStatus"],deliveryAddress=data["deliveryAddress"],orderDateTime=DateTime.parse(data["orderDateTime"]),item=data["item"],qty=data["qty"];
 
+	Order clone(){return Order.fromJson(this.toJson());}
 }

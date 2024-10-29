@@ -8,4 +8,5 @@ class Delivery implements IMVCModel{
 	Map<String, dynamic> toJsonWithoutDbAuto() => {"rating":rating};
 	Delivery.fromJson(Map<String,dynamic> data): id=data["id"],rating=data["rating"],deliveryMethod=data["deliveryMethod"];
 
+	Delivery clone(){return Delivery.fromJson(this.toJson());}
 }

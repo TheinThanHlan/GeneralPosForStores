@@ -10,4 +10,5 @@ class Shop implements IMVCModel{
 	Map<String, dynamic> toJsonWithoutDbAuto() => {"name":name};
 	Shop.fromJson(Map<String,dynamic> data): id=data["id"],createdDateTime=DateTime.parse(data["createdDateTime"]),name=data["name"],user=data["user"],type=data["type"];
 
+	Shop clone(){return Shop.fromJson(this.toJson());}
 }

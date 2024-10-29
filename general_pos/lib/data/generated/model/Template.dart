@@ -7,4 +7,5 @@ class Template implements IMVCModel{
 	Map<String, dynamic> toJsonWithoutDbAuto() => {};
 	Template.fromJson(Map<String,dynamic> data): id=data["id"],createdDateTime=DateTime.parse(data["createdDateTime"]);
 
+	Template clone(){return Template.fromJson(this.toJson());}
 }

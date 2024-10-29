@@ -9,4 +9,5 @@ class ProductProvider implements IMVCModel{
 	Map<String, dynamic> toJsonWithoutDbAuto() => {"ratings":ratings};
 	ProductProvider.fromJson(Map<String,dynamic> data): id=data["id"],provider=data["provider"],products=data["products"],ratings=data["ratings"];
 
+	ProductProvider clone(){return ProductProvider.fromJson(this.toJson());}
 }

@@ -15,7 +15,7 @@
             "type": "String",
             "default_value": "",
             "optional": False,
-            "constraints": "not null uniqe",
+            "constraints": "not null unique",
             "dbAutoValue": False,
             "map": "",
         },

@@ -6,3 +6,5 @@ export './interface/IMVCDao.dart';
 export './interface/IMVCView.dart';
 export './interface/IMVCModel.dart';
 export './initialize.dart';
+export './GlobalConfig.dart';
+export './ResponsiveLayout.dart';

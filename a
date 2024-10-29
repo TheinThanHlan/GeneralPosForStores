@@ -1,0 +1,73 @@
+#future builder
+              FutureBuilder(
+                future: widget.controller.getCategories(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Positioned(
+                      child: DataTable(
+                        columns: [
+                          DataColumn(label: Text("No.")),
+                          DataColumn(label: Text("Name")),
+                          DataColumn(label: Text("Delete"))
+                        ],
+                        rows: [
+                          for (int a = 0; a < snapshot.data!.length; a++)
+                            DataRow(cells: [
+                              DataCell(Text(a.toString())),
+                              DataCell(Text(snapshot.data![a].name)),
+                              DataCell(OutlinedButton(
+                                  onPressed: () {}, child: Text("Delete"))),
+                            ])
+                        ],
+                      ),
+                    );
+                  }
+                  return Container();
+                },
+              ),
+
+        Expanded(
+          flex: 8,
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: 
+                  Container(
+                    width: 233,
+                    child: TextFormField(
+                      controller: widget.controller.searchController,
+                      //get the keyboard events
+                      onChanged: (x) {
+                        setState(() {});
+                      },
+                      decoration: InputDecoration(
+                        label: Text("Search"),
+                        //textinput clear text
+                        suffixIcon: InkWell(
+                          child: Icon(Icons.clear),
+                          onTap: () {
+                            widget.controller.searchController.clear();
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Container(
+                      width: 144,
+                      child: OutlinedButton(
+                          onPressed: () {
+                            widget.controller.addCategory(setState);
+                          },
+                          child: Text("Add Category"))),
+                )
+              ],
+            ),
+          ),
+        ),

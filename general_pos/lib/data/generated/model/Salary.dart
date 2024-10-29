@@ -9,4 +9,5 @@ class Salary implements IMVCModel{
 	Map<String, dynamic> toJsonWithoutDbAuto() => {"salary":salary};
 	Salary.fromJson(Map<String,dynamic> data): id=data["id"],salary=data["salary"],dateTime=DateTime.parse(data["dateTime"]),employee=data["employee"];
 
+	Salary clone(){return Salary.fromJson(this.toJson());}
 }

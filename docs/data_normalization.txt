@@ -58,17 +58,11 @@ Customer
 Salary
   salary,datetime,employee
 
-customer
-  user,savedProducts
-
 productTemplate
-  name,type,stockKeepingUnit,description,prices,categories,productImages
+  name,type,description,prices,categories,productImages
 
 ProductCategory
   name,categoryType
-
-ProductCategoryType
-  name
 
 productProviders
   providers,products,ratings, 
@@ -83,7 +77,7 @@ color
   name,code
 
 inventory
-  productTemplate, qty , productSizes ,colors , prices , currentPrice , categories, productImages
+  productTemplate,sku,upc, qty , ProductProperties, prices , currentPrice , categories, productImages
 
 Order
   inventory , qty 
@@ -96,5 +90,13 @@ Table
   name
   
 
+
+
+
+ProductProperties
+  id,propertyName,value
+
+ProductPropertiesNames
+  id,propertyName
 
 
