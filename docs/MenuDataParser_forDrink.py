@@ -1,14 +1,17 @@
 
 import pandas as pd
 
+
 df=pd.read_csv("./menuData.drinks.csv");
 df=df.fillna(0);
 
 #product template
 productTemplates=[]
 sepreator="--#-#"
+product_id=86
 for index,row in df.iterrows():
-    productTemplates.append(f"({index+1},'{row['name']}')")
+    product_id+=1
+    productTemplates.append(f"({product_id},'{row['name']}')")
 
 #product categories
 categories=[]
@@ -33,15 +36,35 @@ for index,row in df.iterrows():
            productProperties.append(f"({count_id},{b})")
 
 
-print(sepreator)
-print("insert into 'ProductTemplate'(id,name) values")
-print(",".join(productTemplates))
-print(sepreator)
-print(f"insert into '#_#_#ProductTemplate_ProductCategory'(productTemplateId,productCategoryId) values")
-print(",".join(categories))
-print(sepreator)
-print(f"insert into 'Inventory'(id,productTemplate) values")
-print(",".join(inventories))
-print(sepreator)
-print(f"insert into '#_#_#Inventory_ProductProperty'(inventoryId,productPropertyId) values")
-print(",".join(productProperties))
+def split_join_print(insert_stmt,arr):
+    output=""
+    sepreator="--#-#"
+    count=0
+    tmp_arr=[]
+    for a in arr:
+        if count>400:
+            output+=insert_stmt+"\n"
+            output+=",".join(tmp_arr)+"\n"
+            output+=sepreator+"\n"
+
+            count=0
+            tmp_arr=[]
+
+        tmp_arr.append(a);
+        count+=1
+    output+=insert_stmt+"\n"
+    output+=",".join(tmp_arr)+"\n"
+    output+=sepreator+"\n"
+    return output
+
+
+
+
+with open("tmp","a") as f:
+    f.write(split_join_print("insert into 'ProductTemplate'(id,name) values",productTemplates))
+
+    f.write(split_join_print(f"insert into '#_#_#ProductTemplate_ProductCategory'(productTemplateId,productCategoryId) values",categories))
+
+    f.write( split_join_print(f"insert into 'Inventory'(id,productTemplate) values",inventories))
+
+    f.write(split_join_print(f"insert into '#_#_#Inventory_ProductProperty'(inventoryId,productPropertyId) values",productProperties))

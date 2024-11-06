@@ -4,6 +4,8 @@ import 'package:general_pos/views/SideBar/SideBarPage.dart';
 import 'mvc_template/all.dart';
 import "package:flutter/services.dart";
 
+ThemeData globalTheme = ThemeData(fontFamilyFallback: ["OpenSans", "mm3"]);
+
 void main() {
   init().then((x) {
     MaterialApp mainApp = MaterialApp(
@@ -20,5 +22,3 @@ void main() {
     //);
   });
 }
-
-ThemeData globalTheme = ThemeData();

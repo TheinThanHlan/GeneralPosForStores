@@ -32,7 +32,7 @@ class InventoryDao extends InventoryGeneratedDao {
   from Inventory i
   inner join ProductTemplate pt on pt.id=i.productTemplate
   inner join ProductPrice pp on pp.id=i.currentPrice
-  where pt.name like('%$name%') order by iId,ptName
+  where pt.name like('%$name%') and ppCurrentPrice!=0 order by iId,ptName
   """;
     List tmp = await db.rawQuery(sql);
     Map<int, Inventory> output = {};
@@ -59,7 +59,7 @@ class InventoryDao extends InventoryGeneratedDao {
   from Inventory i
   inner join ProductTemplate pt on pt.id=i.productTemplate
   left join ProductPrice pp on pp.id=i.currentPrice
-  where pt.id = $id
+  where pt.id = $id order by ppCurrentPrice desc
   """;
     List tmp = await db.rawQuery(sql);
     List<Inventory> output = [];

@@ -11,7 +11,7 @@ class ProductPropertyDao extends ProductPropertyGeneratedDao {
              from '#_#_#Inventory_ProductProperty' as i
              inner join ProductProperty as p on i.'productPropertyId'=p.id
              inner join ProductPropertyName as pn on p.productPropertyName=pn.id
-             where i.inventoryId=$id order by pnName
+             where i.inventoryId=$id order by pnName desc
     """;
     List tmp = await db.rawQuery(sql);
     List<ProductProperty> output = tmp.map((a) {

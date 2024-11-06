@@ -41,6 +41,7 @@ dependencies:
   device_preview: ^1.2.0
   flutter_expandable_table: ^2.1.0
   path_provider: ^2.1.4
+  printing: ^5.13.4
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +67,23 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/databases/
+    - assets/fonts/Myanmar3/
+    - assets/fonts/Noto_Sans_Myanmar/
+    - assets/fonts/Padauk-5.001/
+
   #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: Padauk
+      fonts:
+        - asset: assets/fonts/Padauk-5.001/Padauk-Bold.ttf
+
+    - family: mm3
+      fonts:
+        - asset: assets/fonts/Myanmar3/mm3-multi-os.ttf
+
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/Open_Sans/OpenSans_VariableFont_wdth.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

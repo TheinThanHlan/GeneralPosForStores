@@ -1,5 +1,5 @@
 import 'package:general_pos/views/Components/OCDialog/OCDialogInject.dart';
-import 'package:general_pos/views/Components/OCDialog/OCDialogModel.dart';
+import 'package:general_pos/views/Components/PrintVoucher/PrintVoucherInject.dart';
 import 'package:general_pos/views/Manage/ManageInject.dart';
 import 'package:general_pos/views/ManageCategory/ManageCategoryInject.dart';
 import 'package:general_pos/views/ManageProductTemplate/ManageProductTemplateInject.dart';
@@ -37,4 +37,5 @@ Future<void> initPages() async {
 
 Future<void> initComponents() async {
   injectOCDialog(getIt);
+  injectPrintVoucher(getIt);
 }

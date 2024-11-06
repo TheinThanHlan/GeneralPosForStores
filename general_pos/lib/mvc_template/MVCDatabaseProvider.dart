@@ -19,8 +19,8 @@ class MVCDatabaseProvider {
     //   jsonDecode(await rootBundle.loadString("assets/global.json"))["name"];
     _sql_create_schema = [
       await rootBundle.loadString("assets/databases/databaseGenerated.sql"),
-      //await rootBundle.loadString("assets/databases/database.sql")
-      await rootBundle.loadString("assets/databases/database1.sql")
+      await rootBundle.loadString("assets/databases/database.sql")
+      //await rootBundle.loadString("assets/databases/database1.sql")
     ].join("--#-#");
 
     _sql_drop_schema =

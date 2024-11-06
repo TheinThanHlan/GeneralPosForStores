@@ -4,6 +4,8 @@ import './SalesController.dart';
 import '../../data/all.dart';
 import '../Components/OCDialog/OCDialogModel.dart';
 import '../Components/OCDialog/OCDialogComponent.dart';
+import '../Components/PrintVoucher/PrintVoucherModel.dart';
+import '../Components/PrintVoucher/PrintVoucherComponent.dart';
 
 class Tablet extends StatefulWidget {
   late final SalesController controller;
@@ -189,7 +191,46 @@ class _Tablet extends State<Tablet> {
                               OutlinedButton(
                                   child: Text("Print",
                                       style: getIt<GlobalConfig>().textStyle),
-                                  onPressed: () {}),
+                                  onPressed: () async {
+                                    widget.controller.currentVoucher.value
+                                            .ListOfOrder_mappedBy_voucher =
+                                        (await getIt<OrderDao>()
+                                                .readOrdersWith_voucher_searchWith_productTemplateName(
+                                                    value, ""))
+                                            .values
+                                            .toList();
+                                    var printVoucherModel = PrintVoucherModel(
+                                        voucher: widget
+                                            .controller.currentVoucher.value,
+                                        totalPrice: await getIt<VoucherDao>()
+                                            .getTotalPrice(value));
+                                    if (printVoucherModel
+                                        .voucher
+                                        .ListOfOrder_mappedBy_voucher!
+                                        .isNotEmpty) {
+                                      getIt<PrintVoucherComponent>(
+                                              param1: printVoucherModel)
+                                          .printVoucher();
+                                    } else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                              title: Text("သတိ"),
+                                              content: Text(
+                                                  "Voucher အလွတ်အား print ထုတ်လို့မရပါ"),
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("OK"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ]);
+                                        },
+                                      );
+                                    }
+                                  }),
                               OutlinedButton(
                                 child: Text(
                                   "Order",
@@ -558,7 +599,10 @@ class _Tablet extends State<Tablet> {
                                                             .substractOrder(
                                                                 a.key);
                                                       },
-                                                      icon: Icon(Icons.delete),
+                                                      icon: Icon(
+                                                          Icons
+                                                              .exposure_minus_1,
+                                                          color: Colors.red),
                                                     ),
                                                     IconButton(
                                                       onPressed: () {
@@ -568,7 +612,8 @@ class _Tablet extends State<Tablet> {
                                                               a.key, a.value),
                                                         );
                                                       },
-                                                      icon: Icon(Icons.add),
+                                                      icon: Icon(Icons
+                                                          .exposure_plus_1),
                                                     ),
                                                   ],
                                                 )
@@ -639,8 +684,10 @@ class _Tablet extends State<Tablet> {
                                                               .substractOrder(
                                                                   a.key);
                                                         },
-                                                        icon:
-                                                            Icon(Icons.delete),
+                                                        icon: Icon(
+                                                            Icons
+                                                                .exposure_minus_1,
+                                                            color: Colors.red),
                                                       ),
                                                       IconButton(
                                                         onPressed: () {
@@ -650,7 +697,8 @@ class _Tablet extends State<Tablet> {
                                                                 a.value.item),
                                                           );
                                                         },
-                                                        icon: Icon(Icons.add),
+                                                        icon: Icon(Icons
+                                                            .exposure_plus_1),
                                                       ),
                                                     ],
                                                   )
